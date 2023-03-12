@@ -1,22 +1,39 @@
 /** @format */
 import { UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
+import { Navigate } from 'react-router';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+
+import { CreateTicketPage, DeskPage, LinePage, LoginPage } from './';
 
 const PAGES = [
 	{
+		icon: <UserOutlined />,
 		key: '1',
 		label: 'Login',
-		icon: <UserOutlined />,
+		path: '/login',
+		element: LoginPage,
 	},
 	{
+		icon: <UserOutlined />,
 		key: '2',
 		label: 'Line',
-		icon: <UserOutlined />,
+		path: '/line',
+		element: LinePage,
 	},
 	{
+		icon: <UserOutlined />,
 		key: '3',
 		label: 'Create Ticket',
+		path: '/create',
+		element: CreateTicketPage,
+	},
+	{
 		icon: <UserOutlined />,
+		key: '4',
+		label: 'Desk',
+		path: '/desk',
+		element: DeskPage,
 	},
 ];
 
@@ -28,29 +45,54 @@ export const RouterPage = () => {
 	} = theme.useToken();
 
 	return (
-		<Layout
-			style={{
-				height: '100vh',
-			}}>
-			<Sider>
-				<Menu
-					theme='dark'
-					mode='inline'
-					defaultSelectedKeys={['1']}
-					items={PAGES}
-				/>
-			</Sider>
-			<Layout className='site-layout'>
-				<Content
-					style={{
-						margin: '1.5rem 1rem',
-						padding: 24,
-						minHeight: 280,
-						background: colorBgContainer,
-					}}>
-					Content
-				</Content>
+		<BrowserRouter>
+			<Layout
+				style={{
+					height: '100vh',
+				}}
+			>
+				<Sider hidden={false}>
+					<Menu
+						theme='dark'
+						mode='inline'
+						defaultSelectedKeys={['1']}
+					>
+						{PAGES.map((page) => (
+							<Menu.Item
+								key={page.key}
+								icon={page.icon}
+							>
+								<Link to={page.path}>{page.label}</Link>
+							</Menu.Item>
+						))}
+					</Menu>
+				</Sider>
+				<Layout className='site-layout'>
+					<Content
+						style={{
+							margin: '1.5rem 1rem',
+							padding: 24,
+							minHeight: 280,
+							background: colorBgContainer,
+						}}
+					>
+						<Routes>
+							{PAGES.map(({ key, path, element }) => (
+								<Route
+									key={key}
+									path={path}
+									element={<LoginPage />}
+								></Route>
+							))}
+
+							<Route
+								path='*'
+								element={<Navigate to='/login' />}
+							/>
+						</Routes>
+					</Content>
+				</Layout>
 			</Layout>
-		</Layout>
+		</BrowserRouter>
 	);
 };
