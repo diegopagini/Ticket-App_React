@@ -1,5 +1,5 @@
 /** @format */
-import { UserOutlined } from '@ant-design/icons';
+import { CopyOutlined, DesktopOutlined, NumberOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { Navigate } from 'react-router';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
@@ -12,28 +12,28 @@ const PAGES = [
 		key: '1',
 		label: 'Login',
 		path: '/login',
-		element: LoginPage,
+		element: <LoginPage />,
 	},
 	{
-		icon: <UserOutlined />,
+		icon: <NumberOutlined />,
 		key: '2',
 		label: 'Line',
 		path: '/line',
-		element: LinePage,
+		element: <LinePage />,
 	},
 	{
-		icon: <UserOutlined />,
+		icon: <CopyOutlined />,
 		key: '3',
 		label: 'Create Ticket',
 		path: '/create',
-		element: CreateTicketPage,
+		element: <CreateTicketPage />,
 	},
 	{
-		icon: <UserOutlined />,
+		icon: <DesktopOutlined />,
 		key: '4',
 		label: 'Desk',
 		path: '/desk',
-		element: DeskPage,
+		element: <DeskPage />,
 	},
 ];
 
@@ -81,7 +81,7 @@ export const RouterPage = () => {
 								<Route
 									key={key}
 									path={path}
-									element={<LoginPage />}
+									element={element}
 								></Route>
 							))}
 
