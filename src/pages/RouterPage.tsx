@@ -1,5 +1,5 @@
 /** @format */
-import { CopyOutlined, DesktopOutlined, NumberOutlined, UserOutlined } from '@ant-design/icons';
+import { DesktopOutlined, NumberOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { Navigate } from 'react-router';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
@@ -22,7 +22,7 @@ const PAGES = [
 		element: <LinePage />,
 	},
 	{
-		icon: <CopyOutlined />,
+		icon: <UploadOutlined />,
 		key: '3',
 		label: 'Create Ticket',
 		path: '/create',
@@ -51,7 +51,10 @@ export const RouterPage = () => {
 					height: '100vh',
 				}}
 			>
-				<Sider hidden={false}>
+				<Sider
+					collapsedWidth='0'
+					breakpoint='md'
+				>
 					<Menu
 						theme='dark'
 						mode='inline'
