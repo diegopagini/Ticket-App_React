@@ -1,6 +1,8 @@
 /** @format */
 import { Card, Col, Divider, List, Row, Tag, Typography } from 'antd';
 
+import { useHideMenu } from '../hooks/useHideMenu';
+
 const { Title, Text } = Typography;
 
 const data = [
@@ -42,6 +44,8 @@ const data = [
 ];
 
 export const LinePage = () => {
+	useHideMenu(true);
+
 	return (
 		<>
 			<Title level={2}>With client: </Title>

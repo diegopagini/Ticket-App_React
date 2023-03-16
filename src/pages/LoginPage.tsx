@@ -3,9 +3,13 @@ import { SaveOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input, InputNumber, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
+import { useHideMenu } from '../hooks/useHideMenu';
+
 const { Title, Text } = Typography;
 
 export const LoginPage = () => {
+	useHideMenu(false);
+
 	const navigate = useNavigate();
 
 	const onFinish = (value: any) => {

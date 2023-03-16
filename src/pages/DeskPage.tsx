@@ -2,9 +2,13 @@
 import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Row, Typography } from 'antd';
 
+import { useHideMenu } from '../hooks/useHideMenu';
+
 const { Title, Text } = Typography;
 
 export const DeskPage = () => {
+	useHideMenu(false);
+
 	const goOut = () => {
 		console.log('go out');
 	};

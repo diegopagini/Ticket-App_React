@@ -1,9 +1,11 @@
 /** @format */
 import { DesktopOutlined, NumberOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
+import { useContext } from 'react';
 import { Navigate } from 'react-router';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
+import { UiContext } from '../context/UiContext';
 import { CreateTicketPage, DeskPage, LinePage, LoginPage } from './';
 
 const PAGES = [
@@ -40,6 +42,8 @@ const PAGES = [
 const { Sider, Content } = Layout;
 
 export const RouterPage = () => {
+	const { hideMenu } = useContext(UiContext);
+
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();
@@ -54,6 +58,7 @@ export const RouterPage = () => {
 				<Sider
 					collapsedWidth='0'
 					breakpoint='md'
+					hidden={hideMenu}
 				>
 					<Menu
 						theme='dark'
