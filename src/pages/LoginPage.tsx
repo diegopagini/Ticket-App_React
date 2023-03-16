@@ -1,25 +1,34 @@
 /** @format */
 import { SaveOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input, InputNumber, Typography } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
+import { getUserStorage } from '../helpers/getUserStorage';
 import { useHideMenu } from '../hooks/useHideMenu';
 
 const { Title, Text } = Typography;
 
 export const LoginPage = () => {
 	useHideMenu(false);
+	const [user] = useState(getUserStorage());
 
 	const navigate = useNavigate();
 
-	const onFinish = (value: any) => {
-		console.log(value);
+	const onFinish = ({ agent, desk }: any) => {
+		localStorage.setItem('agent', agent);
+		localStorage.setItem('desk', desk);
+
 		navigate('/desk');
 	};
 
 	const onFinishFailed = (value: any) => {
 		console.log(value);
 	};
+
+	if (user.agent && user.desk) {
+		return <Navigate to='/desk' />;
+	}
 
 	return (
 		<>
@@ -39,7 +48,7 @@ export const LoginPage = () => {
 			>
 				<Form.Item
 					label='Name'
-					name='name'
+					name='agent'
 					rules={[{ required: true, message: 'Please input your name!' }]}
 				>
 					<Input />

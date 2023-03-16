@@ -8,38 +8,38 @@ const { Title, Text } = Typography;
 const data = [
 	{
 		ticketNo: 33,
-		escritorio: 3,
-		agente: 'Fernando Herrera',
+		desk: 3,
+		agent: 'Fernando Herrera',
 	},
 	{
 		ticketNo: 34,
-		escritorio: 4,
-		agente: 'Melissa Flores',
+		desk: 4,
+		agent: 'Melissa Flores',
 	},
 	{
 		ticketNo: 35,
-		escritorio: 5,
-		agente: 'Carlos Castro',
+		desk: 5,
+		agent: 'Carlos Castro',
 	},
 	{
 		ticketNo: 36,
-		escritorio: 3,
-		agente: 'Fernando Herrera',
+		desk: 3,
+		agent: 'Fernando Herrera',
 	},
 	{
 		ticketNo: 37,
-		escritorio: 3,
-		agente: 'Fernando Herrera',
+		desk: 3,
+		agent: 'Fernando Herrera',
 	},
 	{
 		ticketNo: 38,
-		escritorio: 2,
-		agente: 'Melissa Flores',
+		desk: 2,
+		agent: 'Melissa Flores',
 	},
 	{
 		ticketNo: 39,
-		escritorio: 5,
-		agente: 'Carlos Castro',
+		desk: 5,
+		agent: 'Carlos Castro',
 	},
 ];
 
@@ -61,8 +61,8 @@ export const LinePage = () => {
 										marginTop: 16,
 									}}
 									actions={[
-										<Tag color='volcano'>{item.agente}</Tag>,
-										<Tag color='magenta'>Desk: {item.escritorio}</Tag>,
+										<Tag color='volcano'>{item.agent}</Tag>,
+										<Tag color='magenta'>Desk: {item.desk}</Tag>,
 									]}
 								>
 									<Title># {item.ticketNo}</Title>
@@ -84,7 +84,7 @@ export const LinePage = () => {
 											<Text type='secondary'>In desk </Text>
 											<Tag color='magenta'>{item.ticketNo}</Tag>
 											<Text type='secondary'>Agent </Text>
-											<Tag color='volcano'>{item.agente}</Tag>
+											<Tag color='volcano'>{item.agent}</Tag>
 										</>
 									}
 								/>
