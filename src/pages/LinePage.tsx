@@ -3,6 +3,7 @@ import { Card, Col, Divider, List, Row, Tag, Typography } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 
 import { SocketContext } from '../context/socketContext';
+import { getTickets } from '../helpers/getTickets';
 import { useHideMenu } from '../hooks/useHideMenu';
 import { Ticket } from '../interfaces/ticket.interface';
 
@@ -23,6 +24,12 @@ export const LinePage = () => {
 			socket.off('ticket-assigned');
 		};
 	}, [socket]);
+
+	useEffect(() => {
+		getTickets().then(({ tickets }) => {
+			setTickets(tickets);
+		});
+	}, []);
 
 	return (
 		<>
@@ -59,9 +66,9 @@ export const LinePage = () => {
 									title={`Ticket # ${item.number}`}
 									description={
 										<>
-											<Text type='secondary'>In desk </Text>
+											<Text type='secondary'>In desk: </Text>
 											<Tag color='magenta'>{item.number}</Tag>
-											<Text type='secondary'>Agent </Text>
+											<Text type='secondary'>Agent: </Text>
 											<Tag color='volcano'>{item.agent}</Tag>
 										</>
 									}
