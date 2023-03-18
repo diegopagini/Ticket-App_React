@@ -22,10 +22,6 @@ export const LoginPage = () => {
 		navigate('/desk');
 	};
 
-	const onFinishFailed = (value: any) => {
-		console.log(value);
-	};
-
 	if (user.agent && user.desk) {
 		return <Navigate to='/desk' />;
 	}
@@ -43,7 +39,6 @@ export const LoginPage = () => {
 				style={{ maxWidth: 600 }}
 				initialValues={{ remember: true }}
 				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
 				autoComplete='off'
 			>
 				<Form.Item
