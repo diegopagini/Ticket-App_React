@@ -1,17 +1,15 @@
 /** @format */
 import { createContext, ReactNode } from 'react';
+import { Socket } from 'socket.io-client';
 
 import { useSocket } from '../hooks/useSocket';
 
 interface Context {
-	socket: any;
+	socket: Socket;
 	online: boolean;
 }
 
-export const SocketContext = createContext<Context>({
-	socket: null,
-	online: false,
-});
+export const SocketContext = createContext<Context>({} as any);
 
 interface Props {
 	children: ReactNode;
