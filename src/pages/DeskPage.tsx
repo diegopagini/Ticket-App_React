@@ -1,17 +1,21 @@
 /** @format */
 import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Row, Typography } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
+import { SocketContext } from '../context/socketContext';
 import { getUserStorage } from '../helpers/getUserStorage';
 import { useHideMenu } from '../hooks/useHideMenu';
+import { Ticket } from '../interfaces/ticket.interface';
 
 const { Title, Text } = Typography;
 
 export const DeskPage = () => {
 	useHideMenu(false);
 	const navigate = useNavigate();
+	const { socket } = useContext(SocketContext);
+	const [ticket, setTicket] = useState<Ticket | null>(null);
 	const [user] = useState(getUserStorage());
 
 	const goOut = () => {
@@ -20,7 +24,9 @@ export const DeskPage = () => {
 	};
 
 	const nextTicket = () => {
-		console.log('nextTicket');
+		socket.emit('next-ticket', user, (ticket: Ticket) => {
+			setTicket(ticket);
+		});
 	};
 
 	if (!user.agent || !user.desk) {
@@ -58,17 +64,19 @@ export const DeskPage = () => {
 
 			<Divider />
 
-			<Row>
-				<Col>
-					<Text>You are dealing with ticket number: </Text>
-					<Text
-						style={{ fontSize: 20 }}
-						type='danger'
-					>
-						55
-					</Text>
-				</Col>
-			</Row>
+			{ticket && (
+				<Row>
+					<Col>
+						<Text>You are dealing with ticket number: </Text>
+						<Text
+							style={{ fontSize: 20 }}
+							type='danger'
+						>
+							{ticket.number}
+						</Text>
+					</Col>
+				</Row>
+			)}
 
 			<Row>
 				<Col
